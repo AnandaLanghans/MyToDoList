@@ -3,7 +3,7 @@ function addToDo() {
   const button = document.getElementById("mybutton");
   const input = document.getElementById("myInput");
   const inputValue = input.value;
-  //input.value = "";
+  input.value = "";
   if (inputValue === "") {
     button.disabled = true;
     button.disabled = false;
