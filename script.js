@@ -28,6 +28,7 @@
         // leggere il valore dell'input
         const inputElement = document.getElementById("myInput");
         const value = inputElement.value;
+        inputElement.value = "";
         const toDo = toDoList.addToDo(value);
         // elemento lista
         const liElement = document.createElement("li");
