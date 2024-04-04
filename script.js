@@ -4,8 +4,8 @@ class ToDo {
     this._removed = false;
     this._text = text;
   }
-  get toDoText() {
-    return this.text;
+  get text() {
+    return this._text;
   }
   get removed() {
     return this._removed;
@@ -63,7 +63,7 @@ function addToDo() {
 
   // elemento testo
   const textElement = document.createElement("span");
-  textElement.innerText = toDo._text;
+  textElement.innerText = toDo.text;
   liElement.appendChild(textElement);
   // aggiungo elemento lista alla lista
   const listElement = document.getElementById("myList");
@@ -87,11 +87,13 @@ function addToDo() {
   const updateToDoBtn = document.createElement("button");
   updateToDoBtn.innerText = "\u270E";
   updateToDoBtn.onclick = () => {
-    const editprompt = prompt("Edit your entry");
-    textElement.innerText = editprompt;
-    toDo.updateToDo(textElement.innerText);
-    //log
-    console.log(...toDoList.toDos);
+    if (completatoElement.checked === false) {
+      const editprompt = prompt("Edit your entry");
+      textElement.innerText = editprompt;
+      toDo.updateToDo(textElement.innerText);
+      //log
+      console.log(...toDoList.toDos);
+    }
   };
   liElement.appendChild(updateToDoBtn);
   document.getElementById("myList").appendChild(liElement);
