@@ -1,63 +1,103 @@
+class ToDo {
+  constructor(text) {
+    this._completato = false;
+    this._removed = false;
+    this._text = text;
+  }
+  get toDoText() {
+    return this.text;
+  }
+  get removed() {
+    return this._removed;
+  }
+  get completato() {
+    return this._completato;
+  }
+  completa() {
+    this._completato = true;
+  }
+  //rimuovere todo della lista
+  removeToDo() {
+    this._removed = true;
+  }
+  updateToDo(testo) {
+    this._text = testo;
+  }
+}
+class ToDoList {
+  constructor() {
+    this.toDos = [];
+  }
+  // aggiungere todo nella lista
+  addToDo(text) {
+    const toDo = new ToDo(text);
+    this.toDos.push(toDo);
+    return toDo;
+  }
+}
 
-      class ToDo {
-        constructor(text) {
-          this._completato = false;
-          this.text = text;
-        }
-        get completato() {
-          return this._completato;
-        }
-        completa() {
-          this._completato = true;
-        }
-      }
-      class ToDoList {
-        constructor() {
-          this.toDos = [];
-        }
-        addToDo(text) {
-          const toDo = new ToDo(text);
-          this.toDos.push(toDo);
-          return toDo;
-        }
-      }
+const toDoList = new ToDoList();
 
-      const toDoList = new ToDoList();
+function addToDo() {
+  // leggere il valore dell'input
+  const inputElement = document.getElementById("myInput");
+  const value = inputElement.value;
+  inputElement.value = "";
+  const toDo = toDoList.addToDo(value);
+  // elemento lista
+  const liElement = document.createElement("li");
+  // checkbox completato
+  const completatoElement = document.createElement("input");
+  completatoElement.type = "checkbox";
+  completatoElement.checked = toDo.completato;
+  completatoElement.onclick = () => {
+    toDo.completa();
+    completatoElement.checked = toDo.completato;
+    if (completatoElement.checked)
+      liElement.style.textDecoration = "line-through";
+    else liElement.style.textDecoration = "none";
+    // log
+    console.log(...toDoList.toDos);
+  };
+  liElement.appendChild(completatoElement);
 
-      function addToDo() {
-        // leggere il valore dell'input
-        const inputElement = document.getElementById("myInput");
-        const value = inputElement.value;
-        inputElement.value = "";
-        const toDo = toDoList.addToDo(value);
-        // elemento lista
-        const liElement = document.createElement("li");
-        // checkbox completato
-        const completatoElement = document.createElement("input");
-        completatoElement.type = "checkbox";
-        completatoElement.checked = toDo.completato;
-        completatoElement.onclick = () => {
-          toDo.completa();
-          completatoElement.checked = toDo.completato;
-          // log
-          console.log(toDoList);
-        };
-        liElement.appendChild(completatoElement);
-        // elemento testo
-        const textElement = document.createElement("span");
-        textElement.innerText = toDo.text;
-        liElement.appendChild(textElement);
-        // aggiungo elemento lista alla lista
-        const listElement = document.getElementById("myList");
-        listElement.appendChild(liElement);
-        // log
-        console.log(toDoList);
-      }
-    
+  // elemento testo
+  const textElement = document.createElement("span");
+  textElement.innerText = toDo._text;
+  liElement.appendChild(textElement);
+  // aggiungo elemento lista alla lista
+  const listElement = document.getElementById("myList");
+  listElement.appendChild(liElement);
 
+  // Bottone per rimuovere il todo della lista
+  const removeBtn = document.createElement("button");
+  removeBtn.innerText = "X";
+  removeBtn.checked = toDo.removed;
+  removeBtn.onclick = () => {
+    toDo.removeToDo();
+    removeBtn.checked = toDo.removed;
+    if (removeBtn.checked === true) {
+      liElement.remove();
+    }
+  };
+  liElement.appendChild(removeBtn);
+  document.getElementById("myList").appendChild(liElement);
 
-
-
+  //modifica del testo
+  const updateToDoBtn = document.createElement("button");
+  updateToDoBtn.innerText = "\u270E";
+  updateToDoBtn.onclick = () => {
+    const editprompt = prompt("Edit your entry");
+    textElement.innerText = editprompt;
+    toDo.updateToDo(textElement.innerText);
+    //log
+    console.log(...toDoList.toDos);
+  };
+  liElement.appendChild(updateToDoBtn);
+  document.getElementById("myList").appendChild(liElement);
+  //log
+  console.log(...toDoList.toDos);
+}
 
 // function addToDo() {
 //   // inserimento di un elemento nella ToDo list
