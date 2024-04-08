@@ -11,7 +11,7 @@ function restoreMemento() {
 
 export function startApp() {
   attachEvents();
-  restoreMemento();
+  //restoreMemento();
   renderList();
 }
 /**
