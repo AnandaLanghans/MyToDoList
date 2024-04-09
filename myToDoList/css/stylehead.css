@@ -1,13 +1,4 @@
-/* bordo della pagina*/
-* {
-    box-sizing: border-box;
-  }
-/* colore sfondo*/
-body{
-    margin: 0;
-    min-width: 250px;
-    background-color:azure;
-}
+
 /*colore e dimensione titolo*/
 .header{
     background-color:rgb(198, 250, 250);
@@ -44,24 +35,7 @@ input{
     transition: 0.3s;
     border-radius: 10px;
 }
-/* personalizzo la lista*/
-ul{
-    margin:0;
-    padding:0;
-}
-ul li{
-    cursor: pointer;
-    position: relative;
-    padding: 12px 8px 12px;
-    background-color:azure;
-    font-size: 16px;
-    transition:0.2s;
-}
-ul li:nth-child(odd) {
-    background: #f9f9f9;
-  }
-  ul li:hover {
-    background: #ddd;
-  }
+
+  
  
   

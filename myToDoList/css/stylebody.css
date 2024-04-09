@@ -1,0 +1,33 @@
+/* bordo della pagina*/
+* {
+    box-sizing: border-box;
+  }
+
+  /* colore sfondo*/
+body{
+    margin: 0;
+    min-width: 250px;
+    background-color:azure;
+}
+/* personalizzo la lista*/
+.todolist{
+    margin:0;
+    padding:0;
+}
+.todolist ul li {
+    cursor:pointer;
+    position:relative;
+    padding:1% 0% 1%;
+    background-color:azure;
+    font-size: 16px;
+    text-align: right;
+    color: black;
+    transition:0.2s;
+    
+}
+  .todolist li:hover {
+    background:#ddd;
+  }
+  .checkboxElement{
+    
+  }

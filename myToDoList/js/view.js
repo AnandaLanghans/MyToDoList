@@ -11,7 +11,7 @@ function restoreMemento() {
 
 export function startApp() {
   attachEvents();
-  restoreMemento();
+  //restoreMemento();
   renderList();
 }
 /**
@@ -58,6 +58,7 @@ function createToDoElement(toDo) {
     saveMemento();
   };
   checkboxElement.type = "checkbox";
+  checkboxElement.id = "checkboxElement";
   // Text element
   const textElement = document.createElement("span");
   textElement.innerText = toDo.text;
@@ -70,6 +71,7 @@ function createToDoElement(toDo) {
     renderList();
     saveMemento();
   };
+  removeElement.id = "removeBtn";
   // ToDo Element
   const toDoElement = document.createElement("li");
   toDoElement.appendChild(checkboxElement);
