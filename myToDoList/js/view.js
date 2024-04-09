@@ -58,20 +58,22 @@ function createToDoElement(toDo) {
     saveMemento();
   };
   checkboxElement.type = "checkbox";
-  checkboxElement.id = "checkboxElement";
+  checkboxElement.className = "checkboxElement";
   // Text element
   const textElement = document.createElement("span");
   textElement.innerText = toDo.text;
+  textElement.id = "textElement";
   if (toDo.completed) textElement.style.textDecoration = "line-through";
   // Remove button
   const removeElement = document.createElement("button");
   removeElement.innerText = "x";
+  removeElement.className = "removeBtn";
   removeElement.onclick = () => {
     toDoList.deleteToDo(toDo);
     renderList();
     saveMemento();
   };
-  removeElement.id = "removeBtn";
+
   // ToDo Element
   const toDoElement = document.createElement("li");
   toDoElement.appendChild(checkboxElement);

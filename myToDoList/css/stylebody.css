@@ -1,33 +1,54 @@
-/* bordo della pagina*/
+  /* impostazione del bordo pagina*/
 * {
     box-sizing: border-box;
   }
-
-  /* colore sfondo*/
-body{
+  body{
+    background-color: azure;
+  }
+  /* Rimuove margini della lista */
+  ul {
     margin: 0;
-    min-width: 250px;
-    background-color:azure;
-}
-/* personalizzo la lista*/
-.todolist{
-    margin:0;
-    padding:0;
-}
-.todolist ul li {
-    cursor:pointer;
-    position:relative;
-    padding:1% 0% 1%;
-    background-color:azure;
-    font-size: 16px;
-    text-align: right;
-    color: black;
-    transition:0.2s;
-    
-}
-  .todolist li:hover {
-    background:#ddd;
+    margin-top: 20px;
+    padding: 0;
   }
-  .checkboxElement{
+  /*lista di todos*/
+ 
+    ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        font-size: 18px;
+        transition: 0.2s;
+      }
+
+ ul li:hover{
+    background: rgb(210, 246, 246);
+ }
+ #textElement{
+    margin: 10px;
+    font-size: large;
     
-  }
+ }
+ .removeBtn{
+    background-color: rgb(211, 213, 213);
+    border-radius: 5px;
+ }
+ /*cambiato la checkbox*/
+
+ .checkboxElement{
+    -webkit-appearance: none;
+    appearance: none;
+    content: '';
+    position: absolute;
+    border-color:black;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+ }
+ 
+
+
