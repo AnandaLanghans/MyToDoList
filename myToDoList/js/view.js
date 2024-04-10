@@ -63,8 +63,7 @@ function createToDoElement(toDo) {
   const textElement = document.createElement("span");
   textElement.innerText = toDo.text;
   textElement.id = "textElement";
-  if (toDo.completed)
-    textElement.style.textDecoration = "line-through rgb(198, 250, 250)";
+  if (toDo.completed) textElement.style.textDecoration = "line-through";
   // Remove button
   const removeElement = document.createElement("button");
   removeElement.innerText = "x";
