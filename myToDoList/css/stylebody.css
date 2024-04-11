@@ -48,7 +48,7 @@
  
  /*cambiato la checkbox*/
 
-.checkboxElement{
+/* .checkboxElement{
   -webkit-appearance: none;
   appearance: none;
   background: #888;
@@ -68,7 +68,7 @@ left: 16px;
 transform: rotate(45deg);
 height: 15px;
 width: 7px;
-}
+} */
 #textElement{
   font-size: 18px;
 }

@@ -11,7 +11,7 @@ function restoreMemento() {
 
 export function startApp() {
   attachEvents();
-  //restoreMemento();
+  restoreMemento();
   renderList();
 }
 /**
@@ -51,9 +51,8 @@ function createToDoElement(toDo) {
   // Checkbox completed
   const checkboxElement = document.createElement("input");
   checkboxElement.checked = toDo.completed;
-  checkboxElement.disabled = toDo.completed;
   checkboxElement.onclick = () => {
-    toDo.complete();
+    toDo.toggleCompleted();
     renderList();
     saveMemento();
   };
@@ -63,7 +62,9 @@ function createToDoElement(toDo) {
   const textElement = document.createElement("span");
   textElement.innerText = toDo.text;
   textElement.id = "textElement";
-  if (toDo.completed) textElement.style.textDecoration = "line-through";
+  if (toDo.completed === true)
+    textElement.style.textDecoration = "line-through";
+  else textElement.style.textDecoration = "none";
   // Remove button
   const removeElement = document.createElement("button");
   removeElement.innerText = "x";
@@ -73,12 +74,21 @@ function createToDoElement(toDo) {
     renderList();
     saveMemento();
   };
-
+  //Edit To-DO
+  const editElement = document.createElement("button");
+  editElement.innerText = "\u270E";
+  editElement.classname = "edit";
+  editElement.onclick = () => {
+    const editprompt = prompt("Edit your entry");
+    toDo.editToDo(editprompt);
+    renderList();
+  };
   // ToDo Element
   const toDoElement = document.createElement("li");
   toDoElement.appendChild(checkboxElement);
   toDoElement.appendChild(textElement);
   toDoElement.appendChild(removeElement);
+  toDoElement.appendChild(editElement);
   return toDoElement;
 }
 //crea una copia della lista di todos e lo riposiziona quando viene chiamato

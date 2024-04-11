@@ -12,7 +12,11 @@ export class ToDo {
     return this._text;
   }
   //si occupa di cambiare lo stato della variabile _completed (da false a true)
-  complete() {
-    this._completed = true;
+  toggleCompleted() {
+    this._completed = !this._completed;
+  }
+  editToDo(text) {
+    this._text = text;
+    return this._text;
   }
 }

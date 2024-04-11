@@ -18,11 +18,12 @@ export class ToDoList {
   deleteToDo(toDo) {
     this._toDos = this._toDos.filter((a) => a !== toDo);
   }
+
   //itera sul memento (ovvero il backup) delle attività, per creare istanze di ToDo e aggiungerle alla lista
   setMemento(toDosMemento) {
     toDosMemento.forEach((a) => {
       const toDo = new ToDo(a.text);
-      if (a.completed) toDo.complete();
+      if (a.completed) toDo.toggleCompleted();
       this._toDos.push(toDo);
     });
   }
