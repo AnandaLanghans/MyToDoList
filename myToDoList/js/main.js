@@ -1,3 +1,3 @@
-import { startApp } from "./view.js";
+import { startApp } from "./viewCopy.js";
 
 startApp();
