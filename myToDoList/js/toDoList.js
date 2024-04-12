@@ -4,10 +4,12 @@ export class ToDoList {
   constructor() {
     this._toDos = [];
   }
+
   // accede al valore della lista contenente tutti ToDos inseriti
   get toDos() {
     return [...this._toDos];
   }
+
   //il metodo crea un nuovo ToDo
   createToDo(text) {
     const toDo = new ToDo(text);
@@ -23,6 +25,7 @@ export class ToDoList {
   setMemento(toDosMemento) {
     toDosMemento.forEach((a) => {
       const toDo = new ToDo(a.text);
+      console.log(toDo);
       if (a.completed) toDo.toggleCompleted();
       this._toDos.push(toDo);
     });

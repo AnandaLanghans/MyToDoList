@@ -1,10 +1,11 @@
 import { ToDoList } from "./toDoList.js";
-import { restoreMemento, saveMemento } from "./saveData.js";
-const toDoList = new ToDoList();
+//import { restoreMemento, saveMemento } from "./saveData.js";
+
+export let toDoList = new ToDoList();
 
 export function startApp() {
   attachEvents();
-  restoreMemento();
+  // restoreMemento();
   renderList();
 }
 /**
@@ -37,7 +38,7 @@ function addToDo() {
   toDoList.createToDo(value);
   inputElement.value = "";
   renderList();
-  saveMemento();
+  // saveMemento();
 }
 // serve a creare gli elementi aggiunti nell'interfaccia (checkbox, tasto elimina)
 function createToDoElement(toDo) {
@@ -47,7 +48,7 @@ function createToDoElement(toDo) {
   checkboxElement.onclick = () => {
     toDo.toggleCompleted();
     renderList();
-    saveMemento();
+    // saveMemento();
   };
   checkboxElement.type = "checkbox";
   checkboxElement.className = "checkboxElement";
@@ -65,7 +66,7 @@ function createToDoElement(toDo) {
   removeElement.onclick = () => {
     toDoList.deleteToDo(toDo);
     renderList();
-    saveMemento();
+    // saveMemento();
   };
   //Edit To-DO
   const editElement = document.createElement("button");
@@ -75,7 +76,7 @@ function createToDoElement(toDo) {
     const editprompt = prompt("Edit your entry");
     toDo.editToDo(editprompt);
     renderList();
-    saveMemento();
+    // saveMemento();
   };
   // ToDo Element
   const toDoElement = document.createElement("li");
