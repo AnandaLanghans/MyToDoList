@@ -18,9 +18,9 @@
     ul li {
         cursor: pointer;
         position: relative;
-        padding: 12px 8px 12px 40px;
+        padding: 16px 12px 16px 40px;
         background: #eee;
-        font-size: 18px;
+        font-size: 16px;
         transition: 0.2s;
 
        
@@ -31,46 +31,64 @@
         }
         ul li:hover{
             background: #ddd;
+            
         }
-
+/*tasto per rimuovere*/
 .removeBtn{
   position: absolute;
   right:0;
   top: 0;
-  padding: 12px 16px 12px 16px;
+  padding: 12px 18px 18px;
+  border: solid black;
   background: #d9d9d9;
   color: #555;  
  }
  .removeBtn:hover {
   background-color: #f44336;
-  color: white;
+  color: black;
+}
+/* tasto per la modifica*/
+.edit{
+  position: absolute;
+  right: 50px;;
+  top: 0;
+  padding: 12px 16px 16px;
+  border: solid black;
+  background: #d9d9d9;
+  color: #555; 
+}
+.edit:hover{
+  background-color: yellow;
+  color: black;
 }
  
  /*cambiato la checkbox*/
-
-/* .checkboxElement{
+.checkboxElement:hover{
+  cursor: pointer;
+}
+.checkboxElement{
   -webkit-appearance: none;
   appearance: none;
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
+  background-color: transparent white;
+  position: absolute;
+  border-color: #555;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+
 }
-.checkboxElement::before{
--webkit-appearance: none;
-appearance: none;
-content: '';
-position: absolute;
-border-color: #fff;
-border-style: solid;
-border-width: 0 2px 2px 0;
-top: 10px;
-left: 16px;
-transform: rotate(45deg);
-height: 15px;
-width: 7px;
-} */
+input[type = "checkbox"]:checked{
+  
+  border-color: green;
+  border-style: solid;
+}
+
 #textElement{
-  font-size: 18px;
+  font-size: 16px;
 }
 
 

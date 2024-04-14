@@ -56,12 +56,12 @@ function createToDoElement(toDo) {
   textElement.innerText = toDo.text;
   textElement.id = "textElement";
   if (toDo.completed)
-    textElement.style.textDecoration = "line-through";
+    textElement.style.textDecoration = "line-through green";
   
     //Edit To-DO
   const editElement = document.createElement("button");
   editElement.innerText = "\u270E";
-  editElement.classname = "edit";
+  editElement.className = "edit";
   editElement.onclick = () => {
     const editprompt = prompt("Edit your entry");
     toDo.editToDo(editprompt);
