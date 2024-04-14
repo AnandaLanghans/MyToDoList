@@ -1,8 +1,9 @@
 export class ToDo {
-  constructor(text) {
+  constructor(id, text) {
     this._completed = false;
+    this._id = id;
     this._text = text;
-    this._id = Math.random().toString(16).slice(2);
+    
   }
 
   //permette di accedere al valore della variabile _completed (inizializata false)

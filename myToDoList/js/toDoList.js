@@ -11,22 +11,21 @@ export class ToDoList {
   }
 
   //il metodo crea un nuovo ToDo
-  createToDo(text) {
-    const toDo = new ToDo(text);
+  createToDo(id, text) {
+    const toDo = new ToDo(id, text);
     this._toDos.push(toDo);
     return toDo;
   }
   // elimina un todo della lista
   deleteToDo(toDo) {
-    this._toDos = this._toDos.filter((a) => a !== toDo);
+    this._toDos = this._toDos.filter((a) => a!== toDo);
   }
 
   //itera sul memento (ovvero il backup) delle attività, per creare istanze di ToDo e aggiungerle alla lista
   setMemento(toDosMemento) {
-    toDosMemento.forEach((a) => {
-      const toDo = new ToDo(a.text);
-      console.log(toDo);
-      if (a.completed) toDo.toggleCompleted();
+    toDosMemento.forEach(({completed, id, text}) => {
+      const toDo = new ToDo(id, text);
+      if (completed) toDo.toggleCompleted();
       this._toDos.push(toDo);
     });
   }

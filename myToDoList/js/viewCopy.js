@@ -1,12 +1,11 @@
-import { ToDoList } from "./toDoList.js";
-//import { restoreMemento, saveMemento } from "./saveData.js";
-
-export let toDoList = new ToDoList();
+import{ toDoList} from "./main.js";
+import{addToDo} from  "./businessLogic.js"
+import { createToDo,deleteToDo,updateToDo } from "./database.js";
 
 export function startApp() {
-  attachEvents();
-  // restoreMemento();
   renderList();
+  attachEvents();
+  
 }
 /**
  * NOTA: gli eventi vengono invocati con un parametro: ev.
@@ -14,31 +13,30 @@ export function startApp() {
  * 1. target - ovvero l'oggetto di UI, l'element del DOM. In questo caso e' l'input stesso
  * 2. key - ovvero il nome dell'eventuale carattere premuto (in questo caso, il tasto INVIO)
  */
-function attachEvents() {
+export function attachEvents() {
   const buttonElement = document.getElementById("button");
-  buttonElement.onclick = addToDo;
+  buttonElement.className = "addBtn";
   const inputElement = document.getElementById("input");
+ 
   inputElement.oninput = (ev) => {
     buttonElement.disabled = !Boolean(ev.target.value);
   };
+ 
   inputElement.onkeypress = (ev) => {
-    if (ev.target.value && ev.key === "Enter") addToDo();
+    if (ev.key === "Enter" && ev.target.value.trim() !== "") {
+      addToDo(ev.target.value.trim());
+      inputElement.value = "";
+      renderList();
+    }
   };
-}
-// aggiunge un ToDo nella lista
-/**
- * NOTA: si occupa di:
- * 1. aggiungere un nuovo ToDo alla ToDoList
- * 2. sincronizzare la UI con i cambi applicati alla ToDoList
- * 3. persistere/salvare i cambi applicati alla ToDoList
- */
-function addToDo() {
-  const inputElement = document.getElementById("input");
-  const value = inputElement.value;
-  toDoList.createToDo(value);
-  inputElement.value = "";
-  renderList();
-  // saveMemento();
+ 
+  buttonElement.onclick = () => {
+    if (inputElement.value.trim() !== "") {
+      addToDo(inputElement.value.trim());
+      inputElement.value = "";
+      renderList();
+    }
+  };
 }
 // serve a creare gli elementi aggiunti nell'interfaccia (checkbox, tasto elimina)
 function createToDoElement(toDo) {
@@ -47,8 +45,9 @@ function createToDoElement(toDo) {
   checkboxElement.checked = toDo.completed;
   checkboxElement.onclick = () => {
     toDo.toggleCompleted();
+    updateToDo(toDo);
     renderList();
-    // saveMemento();
+    
   };
   checkboxElement.type = "checkbox";
   checkboxElement.className = "checkboxElement";
@@ -56,19 +55,10 @@ function createToDoElement(toDo) {
   const textElement = document.createElement("span");
   textElement.innerText = toDo.text;
   textElement.id = "textElement";
-  if (toDo.completed === true)
+  if (toDo.completed)
     textElement.style.textDecoration = "line-through";
-  else textElement.style.textDecoration = "none";
-  // Remove button
-  const removeElement = document.createElement("button");
-  removeElement.innerText = "x";
-  removeElement.className = "removeBtn";
-  removeElement.onclick = () => {
-    toDoList.deleteToDo(toDo);
-    renderList();
-    // saveMemento();
-  };
-  //Edit To-DO
+  
+    //Edit To-DO
   const editElement = document.createElement("button");
   editElement.innerText = "\u270E";
   editElement.classname = "edit";
@@ -76,8 +66,18 @@ function createToDoElement(toDo) {
     const editprompt = prompt("Edit your entry");
     toDo.editToDo(editprompt);
     renderList();
-    // saveMemento();
+    updateToDo(toDo);
   };
+  // Remove button
+  const removeElement = document.createElement("button");
+  removeElement.innerText = "x";
+  removeElement.className = "removeBtn";
+  removeElement.onclick = () => {
+    toDoList.deleteToDo(toDo);
+    renderList();
+    deleteToDo(toDo);
+  };
+  
   // ToDo Element
   const toDoElement = document.createElement("li");
   toDoElement.appendChild(checkboxElement);
