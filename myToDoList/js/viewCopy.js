@@ -1,11 +1,10 @@
-import{ toDoList} from "./main.js";
-import{addToDo} from  "./businessLogic.js"
-import { createToDo,deleteToDo,updateToDo } from "./database.js";
+import { toDoList } from "./main.js";
+import { addToDo } from "./businessLogic.js";
+import { createToDo, deleteToDo, updateToDo } from "./database.js";
 
 export function startApp() {
   renderList();
   attachEvents();
-  
 }
 /**
  * NOTA: gli eventi vengono invocati con un parametro: ev.
@@ -17,11 +16,11 @@ export function attachEvents() {
   const buttonElement = document.getElementById("button");
   buttonElement.className = "addBtn";
   const inputElement = document.getElementById("input");
- 
+
   inputElement.oninput = (ev) => {
     buttonElement.disabled = !Boolean(ev.target.value);
   };
- 
+
   inputElement.onkeypress = (ev) => {
     if (ev.key === "Enter" && ev.target.value.trim() !== "") {
       addToDo(ev.target.value.trim());
@@ -29,7 +28,7 @@ export function attachEvents() {
       renderList();
     }
   };
- 
+
   buttonElement.onclick = () => {
     if (inputElement.value.trim() !== "") {
       addToDo(inputElement.value.trim());
@@ -47,7 +46,6 @@ function createToDoElement(toDo) {
     toDo.toggleCompleted();
     updateToDo(toDo);
     renderList();
-    
   };
   checkboxElement.type = "checkbox";
   checkboxElement.className = "checkboxElement";
@@ -55,10 +53,9 @@ function createToDoElement(toDo) {
   const textElement = document.createElement("span");
   textElement.innerText = toDo.text;
   textElement.id = "textElement";
-  if (toDo.completed)
-    textElement.style.textDecoration = "line-through green";
-  
-    //Edit To-DO
+  if (toDo.completed) textElement.style.textDecoration = "line-through green";
+
+  //Edit To-DO
   const editElement = document.createElement("button");
   editElement.innerText = "\u270E";
   editElement.className = "edit";
@@ -77,7 +74,7 @@ function createToDoElement(toDo) {
     renderList();
     deleteToDo(toDo);
   };
-  
+
   // ToDo Element
   const toDoElement = document.createElement("li");
   toDoElement.appendChild(checkboxElement);
