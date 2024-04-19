@@ -6,4 +6,7 @@ const toDosBackup = readToDos(); // legge i toDos dal Db
 export const toDoList = new ToDoList(); // istanzia la toDoList
 toDoList.setMemento(toDosBackup); // itera sul memento (ovvero il backup) delle attività, per creare istanze di ToDo e aggiungerle alla lista
 
+import "../css/stylehead.css";
+import "../css/stylebody.css";
+
 startApp();
